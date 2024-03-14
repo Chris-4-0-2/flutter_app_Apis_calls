@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tarea6_flutter/api/get_api.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ApiWeather extends StatelessWidget {
-  final api = Api(
+  late final token = dotenv.env['OPENWEATHERMAP_TOKEN'];
+  late final api = Api(
       url:
-          "https://api.openweathermap.org/data/2.5/weather?q=Dominican+Republic&APPID=f6dc9061b56207fbb5bb99c89f437bfa&units=metric&lang=es");
+          "https://api.openweathermap.org/data/2.5/weather?q=Dominican+Republic&APPID=$token&units=metric&lang=es");
   ApiWeather({super.key});
 
   @override
@@ -22,7 +24,7 @@ class ApiWeather extends StatelessWidget {
             String location = data['name'];
             String windSpeed = data['wind']['speed'].toString();
             String pressure = data['main']['pressure'].toString();
-      
+
             return Column(
               children: [
                 Container(
@@ -106,7 +108,6 @@ class ApiWeather extends StatelessWidget {
   }
 }
 
-
 Widget _buildInfoRow(String label, String value) {
   return Row(
     children: [
@@ -127,4 +128,3 @@ Widget _buildInfoRow(String label, String value) {
     ],
   );
 }
-

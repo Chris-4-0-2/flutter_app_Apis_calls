@@ -7,8 +7,10 @@ import 'package:tarea6_flutter/pages/get_worpress_info.dart';
 import 'package:tarea6_flutter/pages/get_years_old.dart';
 import 'package:tarea6_flutter/pages/hire_me.dart';
 import 'package:tarea6_flutter/pages/home_page.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+Future main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 
